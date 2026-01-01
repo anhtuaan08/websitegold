@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locket Gold</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/96/000000/lock.png">
+</head>
+<body>
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <div class="notification-content">
+            <div class="notification-title">Thành công!</div>
+            <div class="notification-message">Đã sao chép link thành công</div>
+        </div>
+        <button onclick="hideNotification()" class="notification-close">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="app">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="logo" onclick="window.location.reload()">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <h1>Locket Gold</h1>
+            <p>Lên Gold một cách nhanh chóng</p>
+            <p class="tagline">An toàn • Bảo mật</p>
+            
+            <!-- Statistics -->
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="userCount">12,547+</span>
+                    <span class="stat-label">Người dùng</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99.8%</span>
+                    <span class="stat-label">Ổn định</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Hỗ trợ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FREE SHARE -->
+        <div class="card free" id="share">
+            <h2><i class="fas fa-link"></i> Link Chia Sẻ Miễn Phí</h2>
+            <small>Sao chép link bên dưới để bắt đầu sử dụng</small>
+            
+            <div class="warranty-badge no-warranty">
+                <i class="fas fa-exclamation-triangle"></i> Không có bảo hành
+            </div>
+            <div class="warranty-badge no-warranty">
+                <i class="fas fa-exclamation-triangle"></i> Cần mua shadowrocket để sử dụng
+            </div>
+            <div class="warranty-badge no-warranty">
+                <i class="fas fa-exclamation-triangle"></i> Cần shadowrocket free inbox admin nhé
+            </div>
+            
+            <div class="copy-section">
+                <input type="text" class="copy-input" id="freeUrl" value="https://raw.githubusercontent.com/anhtuaan08/config/refs/heads/main/locket" readonly>
+                <button class="copy-btn" onclick="copyLink('freeUrl')">
+                    <i class="fas fa-copy"></i>
+                    <span>SAO CHÉP LINK</span>
+                    <div class="spinner"></div>
+                </button>
+            </div>
+        </div>
+
+        <!-- DNS CONFIGURATION -->
+        <div class="card" id="dns">
+            <h2><i class="fas fa-server"></i> DNS để giữ locket gold</h2>
+            <small>Tải file DNS để tối ưu hóa trải nghiệm</small>
+            
+            <div class="dns-section">
+                <div class="dns-options">
+                    <div class="dns-option">
+                        <a href="https://vnkienn.github.io/DNS/Locketgoldclick.mobileconfig" class="dns-link">
+                        <i class="fas fa-rocket"></i>
+                        <div>
+                            <div class="dns-title">DNS Giữ Locket Gold</div>
+                            <div class="dns-desc">Tối ưu trải nghiệm</div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- <button class="action-btn free-btn" onclick="downloadAllDNS()">
+                    <i class="fas fa-file-archive"></i>
+                    <span>TẢI TẤT CẢ DNS</span>
+                </button> -->
+            </div>
+        </div>
+
+        <!-- VIDEO TUTORIAL -->
+        <div class="card" id="video">
+            <h2><i class="fas fa-video"></i> Video Hướng Dẫn</h2>
+            <small>Xem video hướng dẫn cài đặt từ A đến Z</small>
+            
+            <div class="video-container">
+                <div class="video-placeholder" onclick="playVideo()">
+                    <i class="fas fa-play-circle"></i>
+                    <span>XEM HƯỚNG DẪN</span>
+                    <p class="video-subtitle">Nhấn để phát video</p>
+                </div>
+            </div>
+            
+            <div class="video-info">
+                <p>
+                    <i class="fas fa-clock video-icon"></i>
+                    Thời lượng: coi đi rồi biết trời
+                </p>
+                <p>
+                    <i class="fas fa-info-circle video-icon"></i>
+                    Hướng dẫn chi tiết từng bước
+                </p>
+            </div>
+        </div>
+
+        <!-- PREMIUM VERSION -->
+        <div class="card premium" id="gold">
+            <h2><i class="fas fa-crown"></i> Locket Gold Pro</h2>
+            <small>Trải nghiệm đỉnh cao với hỗ trợ 24/7</small>
+            
+            <div class="warranty-badge has-warranty">
+                <i class="fas fa-check-circle"></i> Bảo hành 30 ngày - Hoàn tiền 100%
+            </div>
+            
+            <!-- Price Display -->
+            <div class="price-section">
+                <div class="price-display">
+                    <span class="price">70.000</span>
+                    <p class="price-note">Thanh toán một lần • Dùng trọn đời</p>
+                </div>
+                
+                <div class="guarantee-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Đảm bảo hoạt động 99.9%</span>
+                </div>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Tốc độ lên gold siêu nhanh</h3>
+                        <p>Chỉ cần cung cấp username hoặc email.</p>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Hỗ trợ VIP 24/7</h3>
+                        <p>Giải quyết vấn đề trong vòng 30 phút.</p>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Bảo mật tối đa</h3>
+                        <p>Không đăng nhập icloud.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Button chuyển hướng đến phần Liên Hệ -->
+            <button class="action-btn contact-now-btn" onclick="scrollToContact()">
+                <i class="fas fa-comments"></i>
+                <span>LIÊN HỆ ĐẶT MUA NGAY</span>
+            </button>
+            
+            <p class="contact-guide">
+                <i class="fas fa-arrow-down"></i>
+                Liên hệ qua kênh ưa thích của bạn bên dưới
+            </p>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div class="card" id="faq">
+            <h2><i class="fas fa-question-circle"></i> Câu Hỏi Thường Gặp</h2>
+            <small>Tìm câu trả lời cho thắc mắc của bạn</small>
+            
+            <div class="faq-item" onclick="toggleFAQ(1)">
+                <div class="faq-question">
+                    <span>Sự khác biệt giữa bản Free và Pro?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="faq-answer-1">
+                    <p><strong>Bản Free:</strong> Dễ bị locket phát hiện và band ip, tốc độ không ổn định, không có bảo hành, hỗ trợ qua cộng đồng.</p>
+                    <p><strong>Bản Pro:</strong> Chỉ cần username hoặc email là có thể lên gold ,Server riêng, tốc độ cao ổn định, bảo hành 30 ngày hoàn tiền, hỗ trợ VIP 24/7.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" onclick="toggleFAQ(2)">
+                <div class="faq-question">
+                    <span>Thời gian kích hoạt bản Pro là bao lâu?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="faq-answer-2">
+                    Sau khi liên hệ và thanh toán thành công, bạn sẽ nhận được cấu hình Pro trong vòng 5-15 phút qua kênh liên hệ đã chọn.
+                </div>
+            </div>
+            
+            <div class="faq-item" onclick="toggleFAQ(3)">
+                <div class="faq-question">
+                    <span>Có được hoàn tiền nếu không hài lòng?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="faq-answer-3">
+                    <strong>Có!</strong> Bản Pro có chính sách bảo hành 30 ngày. Nếu không sử dụng được hoặc không hài lòng trong 30 ngày đầu, bạn được hoàn tiền 100% mà không cần giải thích.Nếu sau 30 ngày sẽ hoàn 20% số tiền ban đầu.
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT SECTION - RIÊNG BIỆT -->
+        <div class="card" id="contact">
+            <h2><i class="fas fa-headset"></i> Liên Hệ & Hỗ Trợ</h2>
+            <small>Liên hệ ngay để được tư vấn và mua bản Pro</small>
+            
+            <div class="contact-section">
+                <p class="contact-intro">
+                    Chọn kênh liên hệ ưa thích của bạn để được tư vấn và mua <strong>Locket gold Pro</strong> với giá ưu đãi 99.000đ.
+                </p>
+                
+                <div class="contact-grid">
+                    <!-- Telegram -->
+                    <div class="contact-card" onclick="contactVia('telegram')">
+                        <div class="contact-icon telegram-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="contact-title">Telegram VIP</div>
+                        <div class="contact-info">@anhtuaan08</div>
+                        <p class="contact-desc">
+                            Hỗ trợ nhanh nhất, phản hồi trong 5 phút
+                        </p>
+                        <button class="contact-btn-small">
+                            <i class="fab fa-telegram"></i> Nhắn tin ngay
+                        </button>
+                    </div>
+                    
+                    <!-- Zalo -->
+                    <div class="contact-card" onclick="contactVia('zalo')">
+                        <div class="contact-icon zalo-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <div class="contact-title">Zalo</div>
+                        <div class="contact-info">0898376962</div>
+                        <p class="contact-desc">
+                            Tư vấn trực tiếp, hỗ trợ 24/7
+                        </p>
+                        <button class="contact-btn-small">
+                            <i class="fas fa-comment-dots"></i> Kết nối Zalo
+                        </button>
+                    </div>
+                    
+                    <!-- Hotline -->
+                    <div class="contact-card" onclick="contactVia('phone')">
+                        <div class="contact-icon phone-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-title">Hotline</div>
+                        <div class="contact-info">0335 980 310</div>
+                        <p class="contact-desc">
+                            Gọi trực tiếp, tư vấn ngay lập tức
+                        </p>
+                        <button class="contact-btn-small">
+                            <i class="fas fa-phone-alt"></i> Gọi ngay
+                        </button>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="contact-card" onclick="contactVia('email')">
+                        <div class="contact-icon email-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-title">Email Hỗ Trợ</div>
+                        <div class="contact-info">tranvananhtuan08@gmail.com</div>
+                        <p class="contact-desc">
+                            Hỗ trợ kỹ thuật, phản hồi trong 24h
+                        </p>
+                        <button class="contact-btn-small">
+                            <i class="fas fa-envelope"></i> Gửi email
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Working Hours -->
+                <div class="working-hours">
+                    <h4>
+                        <i class="fas fa-clock"></i>
+                        Thời gian hỗ trợ
+                    </h4>
+                    <p class="working-hours-main">
+                        <strong>24/7</strong> - Hỗ trợ mọi lúc, kể cả ngày lễ
+                    </p>
+                    <p class="working-hours-sub">
+                        Phản hồi trong vòng 5-30 phút
+                    </p>
+                </div>
+                
+                <!-- Additional Info -->
+                <div class="contact-security">
+                    <p>
+                        <i class="fas fa-shield-alt security-icon"></i>
+                        <strong>Bảo mật thông tin:</strong> Mọi thông tin liên hệ được bảo mật tuyệt đối
+                    </p>
+                    <p>
+                        <i class="fas fa-bolt security-icon"></i>
+                        <strong>Xử lý nhanh:</strong> Kích hoạt bản Pro trong vòng 15 phút
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MENU -->
+    <div class="menu">
+        <a href="#share" class="active">
+            <i class="fas fa-link"></i>
+            <span>Link</span>
+        </a>
+        <a href="#dns">
+            <i class="fas fa-server"></i>
+            <span>DNS</span>
+        </a>
+        <a href="#video">
+            <i class="fas fa-video"></i>
+            <span>Video</span>
+        </a>
+        <a href="#gold">
+            <i class="fas fa-crown"></i>
+            <span>Pro</span>
+        </a>
+        <a href="#contact">
+            <i class="fas fa-headset"></i>
+            <span>Liên hệ</span>
+        </a>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <button onclick="closeVideo()" class="video-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="video-wrapper">
+                <iframe id="videoFrame" class="video-frame" 
+                        src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen></iframe>
+            </div>
+            <div class="video-modal-info">
+                <h3>Hướng dẫn cài đặt Locket gold</h3>
+                <p>Video hướng dẫn chi tiết từ A đến Z</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+</body>
+</html>
