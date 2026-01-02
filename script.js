@@ -268,7 +268,7 @@ function playVideo() {
     const videoFrame = document.getElementById('videoFrame');
     
     // Use YouTube tutorial video (replace with your actual video)
-    const videoUrl = 'https://www.youtube.com/embed/9bZkp7q19f0?autoplay=1&rel=0';
+    const videoUrl = 'https://www.youtube.com/watch?v=RktXBF-u6UE?autoplay=1&rel=0';
     
     videoFrame.src = videoUrl;
     modal.style.display = 'flex';
